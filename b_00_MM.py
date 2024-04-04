@@ -1,4 +1,5 @@
 import pandas
+import random
 
 
 # checks for valid integer input from user
@@ -155,6 +156,15 @@ add_dollars = ['Ticket Price', 'Surcharge', 'Total', 'Profit']
 for var_item in add_dollars:
     mini_movie_frame[var_item] = mini_movie_frame[var_item].apply(currency)
 
+# choose a winner from our name list
+winner_name = random.choice(all_names)
+
+# get position of winner from our name list
+win_index = all_names.index(all_names)
+
+# look up total amount won (ie: ticket price + surcharge)
+total_won = mini_movie_frame.at[win_index, 'Total']
+
 print("---- Ticket Data ----")
 print()
 
@@ -167,6 +177,11 @@ print("----- Ticket Cost / Profit -----")
 # output total ticket sales and profit
 print("Total Ticket Sales: ${:.2f}".format(total))
 print("Total Profit : ${:.2f}".format(profit))
+
+print()
+print('---- Raffle Winner -----')
+print("Congratulations {}. You have won ${} ie: your"
+      "ticket is free !". format(winner_name, total_won))
 
 remaining_tickets = MAX_TICKETS - tickets_sold
 if tickets_sold == 3:
